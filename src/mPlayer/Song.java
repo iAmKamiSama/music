@@ -1,5 +1,6 @@
 package mPlayer;
 
-public class Song {
-
+public interface Song {
+	public String getLyric();
+	
 }

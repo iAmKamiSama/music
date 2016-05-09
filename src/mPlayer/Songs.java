@@ -20,6 +20,14 @@ public class Songs implements Song{
 	public String getLyric() {
 		return lyrics;
 	}
+	public String getImage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public String getAuthor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

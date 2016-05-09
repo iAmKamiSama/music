@@ -42,22 +42,7 @@ public class MusicPlayer extends JFrame implements KeyListener{
 		//sets how it closes; static constant reference for special close operations
 		addKeyListener(this);
 	}
-
-	private Action nextSong() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private Action playSong() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private Action previousSong() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	public void paintLandscape(Graphics2D g2) {
 		// TODO Auto-generated method stub
 		

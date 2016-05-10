@@ -24,9 +24,9 @@ public class Songs implements Song{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public String getAuthor() {
+	public Artist getArtist() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.artist;
 	}
 	
 	

@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.Action;
@@ -21,10 +22,19 @@ public class MusicPlayer extends JFrame implements KeyListener{
 	int height = 500;
 	Color lightBlue = new Color(120, 189, 245, 1);
 	BufferedImage landscape;
-	boolean touching = false;
+	Screen currentScreen;
 	
 	public static void main(String[] args)	{
 		new MusicPlayer();
+		ArrayList<ArrayList<String>> info = new ArrayList<ArrayList<String>>();
+		
+		info.get(0).add("Shake it off");
+		info.get(0).add("The Hills");
+		info.get(0).add("Can't feel my Face");
+		info.get(0).add("Hotline Bling");
+		info.get(0).add("Jumpman");
+		
+		info.get(2).add(new Artist())
 	}
 	
 	public MusicPlayer(){
@@ -43,6 +53,20 @@ public class MusicPlayer extends JFrame implements KeyListener{
 		addKeyListener(this);
 	}
 	
+	private void reset() {
+		Screen startScreen = new StartScreen(this);
+		setScreen(startScreen);
+	}
+	
+	public void setScreen(Screen newScreen) {
+		if(currentScreen!=null)removeMouseListener(currentScreen.getMouseListener());
+
+		currentScreen=newScreen;
+		repaint();//so that the old screen is no longer visible
+		addMouseListener(currentScreen.getMouseListener());
+		
+	}
+
 	public void paintLandscape(Graphics2D g2) {
 		// TODO Auto-generated method stub
 		

@@ -10,7 +10,7 @@ public class MusicPlayer extends JFrame {
 	private JFrame frame;
 	private JPanel pages;
 	private JLabel controlsLabel;
-	
+	//http://www.tutorialspoint.com/swing/swing_jpanel.htm
 	public static void main(String[] args)	{
 		new MusicPlayer();
 		

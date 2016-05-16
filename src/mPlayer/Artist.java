@@ -6,11 +6,14 @@ public class Artist {
 	private String name;
 	private String biography;
 	private ArrayList<Albums> albums;
-		
-	public Artist(String name,ArrayList<Albums> albums,String biography){
+	
+	public static ArrayList<Artist> AllArtists = new ArrayList<Artist>();
+	
+	public Artist(String name,String biography){
 		this.name = name;
 		this.albums = albums;
 		this.biography=biography;
+		this.albums = new ArrayList<Albums>();
 	}
 	
 	public String getName(){

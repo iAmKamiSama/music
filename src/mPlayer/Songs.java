@@ -15,7 +15,7 @@ public class Songs implements Song{
 		this.artist = artist;
 		this.length = length/60 + ":" + length%60;
 		this.timesPlayed= 0;
-		
+		PlayLists.generateNewPlayLists();
 	}
 	public String getLyric() {
 		return lyrics;

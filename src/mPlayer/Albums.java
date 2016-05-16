@@ -18,4 +18,7 @@ public class Albums {
 	public int numSongs(){
 		return this.songs.size();
 	}
+	public ArrayList<Songs> getSongs(){
+		return this.songs;
+	}
 }

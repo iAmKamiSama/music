@@ -13,6 +13,8 @@ public class MusicPlayer extends JFrame {
 	private JPanel lyrics;
 	//lyrics page for cSong
 	private JPanel songSelection;
+	private JPanel playlistSelection;
+	private JPanel albumSelection;
 	private JPanel categories;
 	private JLabel trackLabel;
 	private JLabel playlistLabel;
@@ -28,6 +30,7 @@ public class MusicPlayer extends JFrame {
 	}
 	
 	public MusicPlayer(){
+		//MAKES GUI
 		prepare();
 	}
 	
@@ -54,8 +57,12 @@ public class MusicPlayer extends JFrame {
 		pages = new JPanel();
 		pages.setLayout(new FlowLayout());
 		pages.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		
 		frame.setVisible(true);
 	}
-	
+	private int genSongPgNum(ArrayList<Songs> arrList){
+		return arrList.size()/6 + 1;
+	}
+	private int genPlaylistPgNum(ArrayList<Songs> playlist){
+		return playlist.size()/6 + 1;
+	}
 }

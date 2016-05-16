@@ -59,9 +59,11 @@ public class MusicPlayer extends JFrame {
 		pages.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		frame.setVisible(true);
 	}
+	//finds out the amount of pages needed for songs tab
 	private int genSongPgNum(ArrayList<Songs> arrList){
 		return arrList.size()/6 + 1;
 	}
+	//finds out the amount of pages needed for playlist tab
 	private int genPlaylistPgNum(ArrayList<Songs> playlist){
 		return playlist.size()/6 + 1;
 	}

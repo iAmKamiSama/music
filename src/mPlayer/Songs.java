@@ -1,4 +1,7 @@
+
 package mPlayer;
+
+import java.util.ArrayList;
 
 public class Songs implements Song{
 	private String name;
@@ -7,6 +10,7 @@ public class Songs implements Song{
 	private Artist artist;
 	private int timesPlayed;
 	private String length;
+	private ArrayList<Integer> userRating;
 	
 	public Songs(String name,String lyrics,Artist artist,String genre,int length){
 		this.name = name;
@@ -16,6 +20,8 @@ public class Songs implements Song{
 		this.length = length/60 + ":" + length%60;
 		this.timesPlayed= 0;
 		PlayLists.generateNewPlayLists();
+		this.userRating = new ArrayList<Integer>();
+		
 	}
 	public String getLyric() {
 		return lyrics;
@@ -28,6 +34,15 @@ public class Songs implements Song{
 		// TODO Auto-generated method stub
 		return this.artist;
 	}
-	
+	public double getUserRating() {
+		double val = 0.0;
+		for (int j:this.userRating){
+			val += j;
+		}
+		return val/this.userRating.size();
+	}
+	public void addUserRating(int rating) {
+		this.userRating.add(rating);
+	}
 	
 }

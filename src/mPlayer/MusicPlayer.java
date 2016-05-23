@@ -129,14 +129,14 @@ public class MusicPlayer extends JFrame implements MouseListener {
 			frame.repaint();
 		}
 		if (e.getComponent() == pButton && !isPlaying){
-			try{
+			//try{
 				pButton.removeAll();
 				pButton.add(new JLabel("PLAY"));
 				pButton.addMouseListener(this);
 				isPlaying = true;
 				frame.validate();
 				frame.repaint();
-			}
+			//}
 			
 		}
 	}

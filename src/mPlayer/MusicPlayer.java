@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.swing.*;
 
-public class MusicPlayer extends JFrame{
+public class MusicPlayer extends JFrame implements MouseListener {
 	private static JFrame frame;
+	private boolean isPlaying = false;
 	private JPanel pages;
 	//different pages w/ content
 	private JPanel lyrics;
@@ -21,12 +22,15 @@ public class MusicPlayer extends JFrame{
 	private static JLabel trackLabel;
 	private JLabel playlistLabel;
 	private JLabel albumLabel;
-	private static JPanel songDisplay;
+	private static JPanel display;
 	//different sorted categories
 	private JLabel cSong;
 	//current song label;
-	private JLabel controlsLabel;
-	//play/previous, next, pause
+	private JPanel controlsLabel;
+	private JLabel next;
+	private JPanel pButton;
+	private JLabel prev;
+	//play/pause, next, previous
 	//http://www.tutorialspoint.com/swing/swing_jpanel.htm
 	public static void main(String[] args)	{
 		MusicPlayer MusicPlayer = new MusicPlayer();
@@ -48,11 +52,13 @@ public class MusicPlayer extends JFrame{
 		categories.setLayout(new FlowLayout());
 		//labels to add to categories
 		trackLabel = new JLabel("Tracks", JLabel.LEFT);
-		trackLabel.setLabelFor(trackLabel);
+		trackLabel.addMouseListener(this);
 		trackLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		playlistLabel = new JLabel("Playlists");
+		playlistLabel.addMouseListener(this);
 		playlistLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		albumLabel = new JLabel("Albums", JLabel.RIGHT);
+		albumLabel.addMouseListener(this);
 		albumLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		categories.add(trackLabel);
 		categories.add(playlistLabel);
@@ -62,9 +68,27 @@ public class MusicPlayer extends JFrame{
 		pages = new JPanel();
 		pages.setLayout(new FlowLayout());
 		pages.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		songDisplay = new JPanel();
-		songDisplay.setLayout(new FlowLayout());
-		frame.add(songDisplay);
+		display = new JPanel();
+		display.setLayout(new FlowLayout());
+		frame.add(display);
+		cSong = new JLabel("SONG", JLabel.CENTER);
+		frame.add(cSong);
+		controlsLabel = new JPanel();
+		next = new JLabel("NEXT");
+		next.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		next.addMouseListener(this);
+		pButton = new JPanel();
+		pButton.add(new JLabel("PAUSE"));
+		pButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		pButton.addMouseListener(this);
+		prev = new JLabel("PREV");
+		prev.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		prev.addMouseListener(this);
+		controlsLabel.add(prev);
+		controlsLabel.add(pButton);
+		controlsLabel.add(next);
+		frame.add(controlsLabel);
+		frame.addMouseListener(this);
 		frame.setVisible(true);
 	}
 	//finds out the amount of pages needed for songs tab
@@ -76,33 +100,62 @@ public class MusicPlayer extends JFrame{
 		return playlist.size()/6 + 1;
 	}
 
-	static class MyMouseListener implements MouseListener {
-		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-			JComponent ref = (JComponent) e.getComponent();
-			if (ref == trackLabel){
-				
-			}
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getComponent() == trackLabel){
+			display.removeAll();
+			display.add(new JLabel("SONGS"));
+			frame.validate();
+			frame.repaint();
 		}
-
-		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
+		if (e.getComponent() == playlistLabel){
+			display.removeAll();
+			display.add(new JLabel("PLAYLISTS"));
+			frame.validate();
+			frame.repaint();
+		}
+		if (e.getComponent() == albumLabel){
+			display.removeAll();
+			display.add(new JLabel("ALBUMS"));
+			frame.validate();
+			frame.repaint();
+		}
+		if (e.getComponent() == pButton && isPlaying){
+			pButton.removeAll();
+			pButton.add(new JLabel("PAUSE"));
+			pButton.addMouseListener(this);
+			isPlaying = false;
+			frame.validate();
+			frame.repaint();
+		}
+		if (e.getComponent() == pButton && !isPlaying){
+			//try{
+				pButton.removeAll();
+				pButton.add(new JLabel("PLAY"));
+				pButton.addMouseListener(this);
+				isPlaying = true;
+				frame.validate();
+				frame.repaint();
+			//}
 			
 		}
-
-		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
+	}
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+//		if (e.getComponent() == trackLabel){
+//			songDisplay.add(new JLabel("test works!!"));
+//		}
+	}
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -28,8 +28,9 @@ public class MusicPlayer extends JFrame implements MouseListener {
 	//current song label;
 	private JPanel controlsLabel;
 	private JLabel next;
-	private JPanel pauseButton;
+	private JLabel pauseButton;
 	private JLabel prev;
+	private JLabel playButton;
 	//play/pause, next, previous
 	//http://www.tutorialspoint.com/swing/swing_jpanel.htm
 	public static void main(String[] args)	{
@@ -77,12 +78,10 @@ public class MusicPlayer extends JFrame implements MouseListener {
 		next = new JLabel("NEXT");
 		next.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		next.addMouseListener(this);
-		pauseButton = new JPanel();
-		pauseButton.add(new JLabel("PAUSE"));
+		pauseButton = new JLabel("PAUSE");
 		pauseButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		pauseButton.addMouseListener(this);
-		playButton = new JPanel();
-		playButton.add(new JLabel("PLAY"));
+		playButton = new JLabel("PLAY");
 		playButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		playButton.addMouseListener(this);
 		prev = new JLabel("PREV");
@@ -124,26 +123,20 @@ public class MusicPlayer extends JFrame implements MouseListener {
 			frame.validate();
 			frame.repaint();
 		}
-		if (e.getComponent() == pButton && isPlaying == 1){
+		if (e.getComponent() == playButton){
 			controlsLabel.removeAll();
 			controlsLabel.add(prev);
-			pButton.removeAll();
-			pButton.add(new JLabel("PAUSE"));
-			pButton.addMouseListener(this);
-			controlsLabel.add(pButton);
+			controlsLabel.add(pauseButton);
 			controlsLabel.add(next);
 			isPlaying = 0;
 			frame.validate();
 			frame.repaint();
 		}
-		else if (e.getComponent() == pButton && isPlaying == 0){
+		else if (e.getComponent() == pauseButton){
 			//try{
 				controlsLabel.removeAll();
 				controlsLabel.add(prev);
-				pButton.removeAll();
-				pButton.add(new JLabel("PLAY"));
-				pButton.addMouseListener(this);
-				controlsLabel.add(pButton);
+				controlsLabel.add(playButton);
 				controlsLabel.add(next);
 				isPlaying = 1;
 				frame.validate();

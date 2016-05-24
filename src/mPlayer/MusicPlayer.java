@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class MusicPlayer extends JFrame implements MouseListener {
 	private static JFrame frame;
-	private boolean isPlaying = false;
+	private int isPlaying = 0;
 	private JPanel pages;
 	//different pages w/ content
 	private JPanel lyrics;
@@ -28,7 +28,7 @@ public class MusicPlayer extends JFrame implements MouseListener {
 	//current song label;
 	private JPanel controlsLabel;
 	private JLabel next;
-	private JPanel pButton;
+	private JPanel pauseButton;
 	private JLabel prev;
 	//play/pause, next, previous
 	//http://www.tutorialspoint.com/swing/swing_jpanel.htm
@@ -77,15 +77,19 @@ public class MusicPlayer extends JFrame implements MouseListener {
 		next = new JLabel("NEXT");
 		next.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		next.addMouseListener(this);
-		pButton = new JPanel();
-		pButton.add(new JLabel("PAUSE"));
-		pButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		pButton.addMouseListener(this);
+		pauseButton = new JPanel();
+		pauseButton.add(new JLabel("PAUSE"));
+		pauseButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		pauseButton.addMouseListener(this);
+		playButton = new JPanel();
+		playButton.add(new JLabel("PLAY"));
+		playButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		playButton.addMouseListener(this);
 		prev = new JLabel("PREV");
 		prev.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		prev.addMouseListener(this);
 		controlsLabel.add(prev);
-		controlsLabel.add(pButton);
+		controlsLabel.add(playButton);
 		controlsLabel.add(next);
 		frame.add(controlsLabel);
 		frame.addMouseListener(this);
@@ -108,32 +112,40 @@ public class MusicPlayer extends JFrame implements MouseListener {
 			frame.validate();
 			frame.repaint();
 		}
-		if (e.getComponent() == playlistLabel){
+		else if (e.getComponent() == playlistLabel){
 			display.removeAll();
 			display.add(new JLabel("PLAYLISTS"));
 			frame.validate();
 			frame.repaint();
 		}
-		if (e.getComponent() == albumLabel){
+		else if (e.getComponent() == albumLabel){
 			display.removeAll();
 			display.add(new JLabel("ALBUMS"));
 			frame.validate();
 			frame.repaint();
 		}
-		if (e.getComponent() == pButton && isPlaying){
+		if (e.getComponent() == pButton && isPlaying == 1){
+			controlsLabel.removeAll();
+			controlsLabel.add(prev);
 			pButton.removeAll();
 			pButton.add(new JLabel("PAUSE"));
 			pButton.addMouseListener(this);
-			isPlaying = false;
+			controlsLabel.add(pButton);
+			controlsLabel.add(next);
+			isPlaying = 0;
 			frame.validate();
 			frame.repaint();
 		}
-		if (e.getComponent() == pButton && !isPlaying){
+		else if (e.getComponent() == pButton && isPlaying == 0){
 			//try{
+				controlsLabel.removeAll();
+				controlsLabel.add(prev);
 				pButton.removeAll();
 				pButton.add(new JLabel("PLAY"));
 				pButton.addMouseListener(this);
-				isPlaying = true;
+				controlsLabel.add(pButton);
+				controlsLabel.add(next);
+				isPlaying = 1;
 				frame.validate();
 				frame.repaint();
 			//}

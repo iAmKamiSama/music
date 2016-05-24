@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public interface MusicInterface {
 	public int[] getLyrics(String songName);
-	//return an int array of 2 numbers, start of the song and end of the song
-	//AKA index of song name and index of the next song name
+	
+	public int determinePages(int size);
+	//divide the things by 5 and see how many pages we need
+	
+	public String[] getSongs(int start, int end);
+	
+	public void playSong (String songName);
 }

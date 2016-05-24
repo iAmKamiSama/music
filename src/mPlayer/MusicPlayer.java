@@ -9,6 +9,7 @@ import java.util.Collection;
 import javax.swing.*;
 
 public class MusicPlayer extends JFrame implements MouseListener {
+	//Alexis' Class
 	private static JFrame frame;
 	private int isPlaying = 0;
 	private JPanel pages;

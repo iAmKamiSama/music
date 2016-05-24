@@ -11,4 +11,8 @@ public interface MusicInterface {
 	public String[] getSongs(int start, int end);
 	
 	public void playSong (String songName);
+	
+	public void playPrevSong(String currSong);
+	
+	public void playNextSong(String currSong);
 }

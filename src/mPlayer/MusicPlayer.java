@@ -76,6 +76,9 @@ public class MusicPlayer extends JFrame implements MouseListener {
 		cSong = new JLabel("SONG", JLabel.CENTER);
 		frame.add(cSong);
 		controlsLabel = new JPanel();
+		pages = new JPanel();
+		pages.add(new JLabel("1 2 3 4 etc"));
+		frame.add(pages);
 		next = new JLabel("NEXT");
 		next.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		next.addMouseListener(this);
@@ -134,7 +137,6 @@ public class MusicPlayer extends JFrame implements MouseListener {
 			frame.repaint();
 		}
 		else if (e.getComponent() == pauseButton){
-			//try{
 				controlsLabel.removeAll();
 				controlsLabel.add(prev);
 				controlsLabel.add(playButton);
@@ -142,8 +144,6 @@ public class MusicPlayer extends JFrame implements MouseListener {
 				isPlaying = 1;
 				frame.validate();
 				frame.repaint();
-			//}
-			
 		}
 	}
 	public void mouseEntered(MouseEvent arg0) {

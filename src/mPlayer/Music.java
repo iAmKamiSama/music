@@ -33,4 +33,16 @@ public class Music implements MusicInterface{
 		// TODO Auto-generated method stub
 		
 	}
+	//above methods are from interface from Alexis
+	public String[] getSongInfo(Song song){
+		return null;
+	}
+	public void playPrevSong(String currSong) {
+		// TODO Auto-generated method stub
+		//use currSong(current song) to find which song is before current song and play it
+	}
+	public void playNextSong(String currSong) {
+		// TODO Auto-generated method stub
+		//use currSong(current song) to find which song is after current song and play it
+	}
 }

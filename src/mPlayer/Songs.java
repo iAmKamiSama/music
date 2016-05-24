@@ -1,7 +1,10 @@
 
 package mPlayer;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Songs implements Song{
 	private String name;
@@ -41,8 +44,9 @@ public class Songs implements Song{
 		}
 		return val/this.userRating.size();
 	}
-	public void addUserRating(int rating) {
-		this.userRating.add(rating);
+	public static void addUserRating(int rating) throws IOException {
+		Scanner s = new Scanner(new File("15songs.txt"));
+		System.out.println(s.nextLine());
+		//this.userRating.add(rating);
 	}
-	
 }

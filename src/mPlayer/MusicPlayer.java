@@ -11,7 +11,7 @@ import javax.swing.*;
 public class MusicPlayer extends JFrame implements MouseListener {
 	//Alexis' Class
 	private static JFrame frame;
-	private int isPlaying = 0;
+	private int currPageNum = 1;
 	private JPanel pages;
 	//different pages w/ content
 	private JPanel lyrics;
@@ -74,10 +74,20 @@ public class MusicPlayer extends JFrame implements MouseListener {
 		display.setLayout(new FlowLayout());
 		frame.add(display);
 		cSong = new JLabel("SONG", JLabel.CENTER);
+		cSong.addMouseListener(this);
 		frame.add(cSong);
 		controlsLabel = new JPanel();
 		pages = new JPanel();
-		pages.add(new JLabel("1 2 3 4 etc"));
+		JLabel prevPage = new JLabel("Previous Page");
+		prevPage.addMouseListener(this);
+		JLabel currPage = new JLabel();
+		JLabel nextPage = new JLabel("Next Page");
+		nextPage.addMouseListener(this);
+		prevPage.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		nextPage.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		pages.add(prevPage);
+		pages.add(currPage);
+		pages.add(nextPage);
 		frame.add(pages);
 		next = new JLabel("NEXT");
 		next.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -99,8 +109,11 @@ public class MusicPlayer extends JFrame implements MouseListener {
 		frame.setVisible(true);
 	}
 	//finds out the amount of pages needed for songs tab
-	private int genSongPgNum(ArrayList<Songs> arrList){
-		return arrList.size()/6 + 1;
+	private void displayCurrPage(){
+		
+	}
+	private int genSongPgNum(ArrayList<Songs> songList){
+		return songList.size()/6 + 1;
 	}
 	//finds out the amount of pages needed for playlist tab
 	private int genPlaylistPgNum(ArrayList<Songs> playlist){
@@ -127,23 +140,24 @@ public class MusicPlayer extends JFrame implements MouseListener {
 			frame.validate();
 			frame.repaint();
 		}
-		if (e.getComponent() == playButton){
+		else if (e.getComponent() == playButton){
 			controlsLabel.removeAll();
 			controlsLabel.add(prev);
 			controlsLabel.add(pauseButton);
 			controlsLabel.add(next);
-			isPlaying = 0;
 			frame.validate();
 			frame.repaint();
 		}
 		else if (e.getComponent() == pauseButton){
-				controlsLabel.removeAll();
-				controlsLabel.add(prev);
-				controlsLabel.add(playButton);
-				controlsLabel.add(next);
-				isPlaying = 1;
-				frame.validate();
-				frame.repaint();
+			controlsLabel.removeAll();
+			controlsLabel.add(prev);
+			controlsLabel.add(playButton);
+			controlsLabel.add(next);
+			frame.validate();
+			frame.repaint();
+		}
+		else{
+			
 		}
 	}
 	public void mouseEntered(MouseEvent arg0) {
@@ -156,9 +170,7 @@ public class MusicPlayer extends JFrame implements MouseListener {
 	}
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-//		if (e.getComponent() == trackLabel){
-//			songDisplay.add(new JLabel("test works!!"));
-//		}
+		
 	}
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub

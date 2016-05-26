@@ -5,7 +5,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import javax.swing.*;
 
 public class MusicPlayer extends JFrame implements MouseListener {
@@ -34,10 +33,10 @@ public class MusicPlayer extends JFrame implements MouseListener {
 	private JLabel playButton;
 	//play/pause, next, previous
 	//http://www.tutorialspoint.com/swing/swing_jpanel.htm
-	public static void main(String[] args)	{
+	public static void main(String[] args) throws IOException	{
 		MusicPlayer MusicPlayer = new MusicPlayer();
+		Music.test();
 	}
-	
 	public MusicPlayer(){
 		//MAKES GUI
 		prepare();

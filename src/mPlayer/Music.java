@@ -49,17 +49,14 @@ public class Music implements MusicInterface{
 	public String[] getSongInfo(Songs song){
 		return null;
 	}
-	public static void test() throws IOException{
+	public static void test() throws IOException {
 		String basePath = System.getProperty("user.dir");
 		Scanner s= new Scanner(new File(basePath+"/src/mPlayer/resources/musicFile.txt"));
 		String str ="";
 		while (s != null){
 			try{
 				str = s.nextLine();
-				System.out.println(str);
-				//Create Sogngs
 			}finally{
-				System.out.println("Done");
 				if(str==null)break;
 			}
 		}

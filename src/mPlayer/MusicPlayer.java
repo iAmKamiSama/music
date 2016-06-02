@@ -245,7 +245,33 @@ public class MusicPlayer extends JFrame implements MouseListener {
 			System.out.println(display6.getText());
 			cSong.setText(display6.getText());;
 		}
+		else if (e.getComponent() == next){
+			findNextSong(cSong.getText());
+		}
+		else if (e.getComponent() == prev){
+			findPrevSong(cSong.getText());
+		}
 	}
+	private void findPrevSong(String song) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < backupDemo.songs.size(); i++){
+			if (backupDemo.songs.get(i).getName() == song && i - 1 >= 0){
+				cSong.setText(backupDemo.songs.get(i-1).getName());
+				break;
+			}
+		}
+	}
+
+	private void findNextSong(String song) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < backupDemo.songs.size(); i++){
+			if (backupDemo.songs.get(i).getName() == song && i + 1 < backupDemo.songs.size()){
+				cSong.setText(backupDemo.songs.get(i+1).getName());
+				break;
+			}
+		}
+	}
+
 	private void displayCurrentSongs(int page) {
 		// TODO Auto-generated method stub
 		display.removeAll();

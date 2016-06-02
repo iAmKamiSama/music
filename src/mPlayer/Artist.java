@@ -9,11 +9,11 @@ public class Artist {
 	
 	public static ArrayList<Artist> AllArtists = new ArrayList<Artist>();
 	
-	public Artist(String name,String biography){
+	public Artist(String name/*,String biography*/){
 		this.name = name;
-		this.albums = albums;
-		this.biography=biography;
-		this.albums = new ArrayList<Albums>();
+//		this.albums = albums;
+//		this.biography=biography;
+//		this.albums = new ArrayList<Albums>();
 	}
 	
 	public String getName(){

@@ -10,6 +10,9 @@ import javax.swing.*;
 public class MusicPlayer extends JFrame implements MouseListener {
 	//Alexis' Class
 	private static JFrame frame;
+	private static boolean songs = true;
+	private static boolean album = false;
+	private static boolean playlist = false;
 	private int currPageNum = 1;
 	private JPanel pages;
 	//different pages w/ content
@@ -32,11 +35,19 @@ public class MusicPlayer extends JFrame implements MouseListener {
 	private JLabel prev;
 	private JLabel playButton;
 	//play/pause, next, previous
+	private JLabel nextPage;
+	private JLabel prevPage;
+	private JLabel display1;
+	private JLabel display2;
+	private JLabel display3;
+	private JLabel display4;
+	private JLabel display5;
+	private JLabel display6;
 	//http://www.tutorialspoint.com/swing/swing_jpanel.htm
-	public static void main(String[] args) throws IOException	{
-		MusicPlayer MusicPlayer = new MusicPlayer();
-		Music.test();
-	}
+//	public static void main(String[] args) throws IOException	{
+//		MusicPlayer MusicPlayer = new MusicPlayer();
+//		Music.test();
+//	}
 	public MusicPlayer(){
 		//MAKES GUI
 		prepare();
@@ -70,17 +81,17 @@ public class MusicPlayer extends JFrame implements MouseListener {
 		pages.setLayout(new FlowLayout());
 		pages.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		display = new JPanel();
-		display.setLayout(new FlowLayout());
+		display.setLayout(new GridLayout(6, 1));
 		frame.add(display);
-		cSong = new JLabel("SONG", JLabel.CENTER);
+		cSong = new JLabel("No Songs Playing", JLabel.CENTER);
 		cSong.addMouseListener(this);
 		frame.add(cSong);
 		controlsLabel = new JPanel();
 		pages = new JPanel();
-		JLabel prevPage = new JLabel("Previous Page");
+		prevPage = new JLabel("Previous Page");
 		prevPage.addMouseListener(this);
-		JLabel currPage = new JLabel();
-		JLabel nextPage = new JLabel("Next Page");
+		JLabel currPage = new JLabel("" + currPageNum);
+		nextPage = new JLabel("Next Page");
 		nextPage.addMouseListener(this);
 		prevPage.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		nextPage.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -104,6 +115,7 @@ public class MusicPlayer extends JFrame implements MouseListener {
 		controlsLabel.add(playButton);
 		controlsLabel.add(next);
 		frame.add(controlsLabel);
+		displayCurrentSongs(currPageNum);
 		frame.addMouseListener(this);
 		frame.setVisible(true);
 	}
@@ -111,12 +123,15 @@ public class MusicPlayer extends JFrame implements MouseListener {
 	private void displayCurrPage(){
 		
 	}
-	private int genSongPgNum(ArrayList<Songs> songList){
+	public static int genSongPgNum(ArrayList<Songs> songList){
 		return songList.size()/6 + 1;
 	}
 	//finds out the amount of pages needed for playlist tab
-	private int genPlaylistPgNum(ArrayList<Songs> playlist){
-		return playlist.size()/6 + 1;
+	public static int genPlaylistPgNum(ArrayList<PlayLists> playlists){
+		return playlists.size()/6 + 1;
+	}
+	public static int genAlbumPgNum(ArrayList<Albums> albums){
+		return albums.size()/6 + 1;
 	}
 
 	public void mouseClicked(MouseEvent e) {
@@ -124,6 +139,9 @@ public class MusicPlayer extends JFrame implements MouseListener {
 		if (e.getComponent() == trackLabel){
 			display.removeAll();
 			display.add(new JLabel("SONGS"));
+			songs = true;
+			playlist = false;
+			album = false;
 			frame.validate();
 			frame.repaint();
 		}
@@ -155,10 +173,134 @@ public class MusicPlayer extends JFrame implements MouseListener {
 			frame.validate();
 			frame.repaint();
 		}
-		else{
-			
+		else if (e.getComponent() == nextPage){
+			if (songs){
+				if (currPageNum < backupDemo.songPages){
+					currPageNum++;
+					pages.removeAll();
+					pages.add(prevPage);
+					pages.add(new JLabel("" + currPageNum));
+					pages.add(nextPage);
+					displayCurrentSongs(currPageNum);
+					frame.validate();
+					frame.repaint();
+				}
+			}
+			else if (playlist){
+				if (currPageNum < backupDemo.playlistPages){
+					currPageNum++;
+					pages.removeAll();
+					pages.add(prevPage);
+					pages.add(new JLabel("" + currPageNum));
+					pages.add(nextPage);
+					displayCurrentPlaylists(currPageNum);
+					frame.validate();
+					frame.repaint();
+				}
+			}
+			else if (album){
+				if (currPageNum < backupDemo.albumPages){
+					currPageNum++;
+					pages.removeAll();
+					pages.add(prevPage);
+					pages.add(new JLabel("" + currPageNum));
+					pages.add(nextPage);
+					displayCurrentAlbums(currPageNum);
+					frame.validate();
+					frame.repaint();
+				}
+			}
+		}
+		else if (e.getComponent() == prevPage && currPageNum > 1){
+			currPageNum--;
+			pages.removeAll();
+			pages.add(prevPage);
+			pages.add(new JLabel("" + currPageNum));
+			pages.add(nextPage);
+			displayCurrentSongs(currPageNum);
+			frame.validate();
+			frame.repaint();
+		}
+		else if (e.getComponent() == display1){
+			System.out.println(display1.getText());
+			cSong.setText(display1.getText());;
+		}
+		else if (e.getComponent() == display2){
+			System.out.println(display2.getText());
+			cSong.setText(display2.getText());;
+		}
+		else if (e.getComponent() == display3){
+			System.out.println(display3.getText());
+			cSong.setText(display3.getText());;
+		}
+		else if (e.getComponent() == display4){
+			System.out.println(display4.getText());
+			cSong.setText(display4.getText());;
+		}
+		else if (e.getComponent() == display5){
+			System.out.println(display5.getText());
+			cSong.setText(display5.getText());;
+		}
+		else if (e.getComponent() == display6){
+			System.out.println(display6.getText());
+			cSong.setText(display6.getText());;
 		}
 	}
+	private void displayCurrentSongs(int page) {
+		// TODO Auto-generated method stub
+		display.removeAll();
+		for (int i = 0; i < backupDemo.songs.size(); i++){
+			System.out.println(backupDemo.songs.get(i).getName());
+		}
+		int z = ((page - 1) * 6);
+		System.out.println(z);
+		System.out.println(z+1);
+		System.out.println(z+2);
+		System.out.println(z+3);
+		System.out.println(z+4);
+		System.out.println(z+5);
+		if (z < backupDemo.songs.size()){
+			display1 = new JLabel(backupDemo.songs.get(z).getName(), JLabel.CENTER);
+			display1.addMouseListener(this);
+			display.add(display1);
+		}
+		if (z + 1 < backupDemo.songs.size()){
+			display2 = new JLabel(backupDemo.songs.get(z+1).getName(), JLabel.CENTER);
+			display2.addMouseListener(this);
+			display.add(display2);
+		}
+		if (z + 2 < backupDemo.songs.size()){
+			display3 = new JLabel(backupDemo.songs.get(z+2).getName(), JLabel.CENTER);
+			display3.addMouseListener(this);
+			display.add(display3);
+		}
+		if (z + 3 < backupDemo.songs.size()){
+			display4 = new JLabel(backupDemo.songs.get(z+3).getName(), JLabel.CENTER);
+			display4.addMouseListener(this);
+			display.add(display4);
+		}
+		if (z + 4 < backupDemo.songs.size()){
+			display5 = new JLabel(backupDemo.songs.get(z+4).getName(), JLabel.CENTER);
+			display5.addMouseListener(this);
+			display.add(display5);
+		}
+		if (z + 5 <= backupDemo.songs.size()){
+			display6 = new JLabel(backupDemo.songs.get(z+5).getName(), JLabel.CENTER);
+			display6.addMouseListener(this);
+			display.add(display6);
+		}
+	}
+
+	private void displayCurrentPlaylists(int page) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void displayCurrentAlbums(int page) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		

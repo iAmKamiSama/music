@@ -23,11 +23,11 @@ public class PlayLists {
 			}
 		}
 	}
-	public static void updatePlaylists(){
-		for(PlayLists a:allPlaylists){
-			for(Songs s :allSongs){
-				
-			}
-		}
-	}
+//	public static void updatePlaylists(){
+//		for(PlayLists a:allPlaylists){
+//			for(Songs s :allSongs){
+//				
+//			}
+//		}
+//	}
 }

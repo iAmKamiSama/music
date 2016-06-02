@@ -137,23 +137,23 @@ public class MusicPlayer extends JFrame implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getComponent() == trackLabel){
+			currPageNum = 1;
 			display.removeAll();
-			display.add(new JLabel("SONGS"));
-			songs = true;
-			playlist = false;
-			album = false;
+			displayCurrentSongs(currPageNum);
 			frame.validate();
 			frame.repaint();
 		}
 		else if (e.getComponent() == playlistLabel){
+			currPageNum = 1;
 			display.removeAll();
-			display.add(new JLabel("PLAYLISTS"));
+			display.add(new JLabel("PLAYLISTS", JLabel.CENTER));
 			frame.validate();
 			frame.repaint();
 		}
 		else if (e.getComponent() == albumLabel){
+			currPageNum = 1;
 			display.removeAll();
-			display.add(new JLabel("ALBUMS"));
+			display.add(new JLabel("ALBUMS", JLabel.CENTER));
 			frame.validate();
 			frame.repaint();
 		}

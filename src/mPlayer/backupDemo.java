@@ -10,6 +10,7 @@ public class backupDemo extends MusicPlayer{
 	static ArrayList<Songs> songs = new ArrayList();
 	static ArrayList<PlayLists> playlists = new ArrayList();
 	static ArrayList<Albums> albums = new ArrayList();
+	static ArrayList<Artist> artists = new ArrayList();
 	static int songPages;
 	static int playlistPages;
 	static int albumPages;
@@ -23,6 +24,7 @@ public class backupDemo extends MusicPlayer{
 			song = s.nextLine();
 			artist = a.nextLine();
 			songs.add(new Songs(song,new Artist(artist)));
+			artists.add(new Artist(artist));
 		}
 	}
 	public static void main(String[] args) throws IOException	{

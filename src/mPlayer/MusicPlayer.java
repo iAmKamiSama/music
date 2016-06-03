@@ -286,32 +286,32 @@ public class MusicPlayer extends JFrame implements MouseListener {
 		System.out.println(z+4);
 		System.out.println(z+5);
 		if (z < backupDemo.songs.size()){
-			display1 = new JLabel(backupDemo.songs.get(z).getName(), JLabel.CENTER);
+			display1 = new JLabel(backupDemo.songs.get(z).getName() + " " + backupDemo.artists.get(z).getName(), JLabel.CENTER);
 			display1.addMouseListener(this);
 			display.add(display1);
 		}
 		if (z + 1 < backupDemo.songs.size()){
-			display2 = new JLabel(backupDemo.songs.get(z+1).getName(), JLabel.CENTER);
+			display2 = new JLabel(backupDemo.songs.get(z+1).getName() + " " + backupDemo.artists.get(z+1).getName(), JLabel.CENTER);
 			display2.addMouseListener(this);
 			display.add(display2);
 		}
 		if (z + 2 < backupDemo.songs.size()){
-			display3 = new JLabel(backupDemo.songs.get(z+2).getName(), JLabel.CENTER);
+			display3 = new JLabel(backupDemo.songs.get(z+2).getName() + " " + backupDemo.artists.get(z+2).getName(), JLabel.CENTER);
 			display3.addMouseListener(this);
 			display.add(display3);
 		}
 		if (z + 3 < backupDemo.songs.size()){
-			display4 = new JLabel(backupDemo.songs.get(z+3).getName(), JLabel.CENTER);
+			display4 = new JLabel(backupDemo.songs.get(z+3).getName() + " " + backupDemo.artists.get(z+3).getName(), JLabel.CENTER);
 			display4.addMouseListener(this);
 			display.add(display4);
 		}
 		if (z + 4 < backupDemo.songs.size()){
-			display5 = new JLabel(backupDemo.songs.get(z+4).getName(), JLabel.CENTER);
+			display5 = new JLabel(backupDemo.songs.get(z+4).getName() + " " + backupDemo.artists.get(z+4).getName(), JLabel.CENTER);
 			display5.addMouseListener(this);
 			display.add(display5);
 		}
 		if (z + 5 <= backupDemo.songs.size()){
-			display6 = new JLabel(backupDemo.songs.get(z+5).getName(), JLabel.CENTER);
+			display6 = new JLabel(backupDemo.songs.get(z+5).getName() + " " + backupDemo.artists.get(z+5).getName(), JLabel.CENTER);
 			display6.addMouseListener(this);
 			display.add(display6);
 		}
